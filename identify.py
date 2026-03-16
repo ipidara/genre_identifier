@@ -34,7 +34,7 @@ def random_forest(df):
 
     # calculate the accuracy of the forest, and print
     accuracy = accuracy_score(y_test, prediction)
-    print(accuracy)
+    print("Accuracy:", accuracy)
 
     # create confusion matrix and display
     confusion = confusion_matrix(y_test, prediction)
@@ -45,8 +45,20 @@ def random_forest(df):
 
     # create feature importances graph, and 
     feature_importances = randomforest.feature_importances_
-    plt.barh(feature_names, feature_importances)
-    plt.xlabel("Feature Importance")
+
+    # sort features by importance
+    indices = np.argsort(feature_importances)
+
+    sorted_features_names = np.array(feature_names)[indices]
+    sorted_importances = feature_importances[indices]
+
+    plt.figure(figsize=(10, 16))
+    plt.barh(sorted_features_names, sorted_importances)
+    plt.xlabel("Feature Importance", fontsize=14)
+    plt.ylabel("Feature", fontsize=14)
+    plt.xticks(fontsize=11)
+    plt.yticks(fontsize=11)
+    plt.tight_layout()
     plt.show()
 
 # read data into dataframe 
