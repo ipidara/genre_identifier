@@ -10,6 +10,7 @@ async function classify(filename) {
   document.getElementById("prediction").innerText = data.prediction;
   document.getElementById("actual").innerText = data.actual;
   document.getElementById("baseline").innerText = data.low_baseline;
+  document.getElementById("high").innerText = data.high_baseline;
   document.getElementById("classified-file").innerText = filename;
 
   const audio = document.getElementById("audio-player");

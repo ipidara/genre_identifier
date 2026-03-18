@@ -24,9 +24,10 @@ class ClassifyRequest(BaseModel):
 
 @app.post("/classify")
 def classify(body: ClassifyRequest):
-    prediction, actual_label = classify_one(body.filename, removed_forest, scaler)
+    prediction, actual_label, high_pred = classify_one(body.filename, removed_forest, scaler)
     return {
         "prediction": prediction[0],
         "actual": actual_label,
-        "low_baseline": low_base
+        "low_baseline": low_base,
+        "high_baseline": high_pred
     }

@@ -4,3 +4,8 @@ scikit-learn
 pandas
 numpy
 matplotlib
+transformers
+torch
+torchaudio
+librosa
+soundfile

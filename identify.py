@@ -6,6 +6,21 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
+from transformers import pipeline
+import os
+os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+
+class GenreClassifier:
+    def __init__(self):
+        self.model = pipeline(
+            "audio-classification",
+            model="SeyedAli/Musical-genres-Classification-Hubert-V1",
+            device="cpu"
+        )
+
+    def predict(self, path):
+        return self.model(path)[0]["label"]
+
 
 def random_forest(df, sample_type):
     feature_names = df.columns.tolist()
@@ -85,7 +100,12 @@ def classify_one(input, forest, scaler):
 
     prediction = forest.predict(row)
 
-    return prediction, actual_label
+    genre = input.split(".")[0]
+
+    clf = GenreClassifier()
+    high_pred = clf.predict(f"./GTZAN/genres_original/{genre}/{input}")
+
+    return prediction, actual_label, high_pred
 
 # read data into dataframe 
 df = pd.read_csv("./GTZAN/features_30_sec.csv")
@@ -122,7 +142,7 @@ full_forest, scaler, low_base = random_forest(df, "Full Dataset")
 removed_forest, removed_scaler, removed_low_base = random_forest(df_removals, "Dataset with removals")
 
 # WHICH ONE TO USE ON INPUTS??
-prediction, actual_label = classify_one(input, full_forest, scaler)
+prediction, actual_label, high_pred = classify_one(input, full_forest, scaler)
 
 # WHAT ORDER TO DO THESE??
 print()
@@ -132,5 +152,6 @@ print()
 print("Model Prediction:", prediction[0])
 print("Actual Genre:", actual_label)
 print("Low Baseline Prediction:", low_base)
+print("High Baseline Prediction:", high_pred)
 
 # print("CLASSIFIED", classify_one("reggae.00000.wav", removed_forest, scaler))
