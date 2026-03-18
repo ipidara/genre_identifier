@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+.navbar {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 2px solid black;
+  margin-bottom: 100px
+}
+
+.navpages a {
+  font-weight: bold;
+  color: black;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.graphs{
+  display: flex;
+}
+
+.column {
+  flex: 1;
+}
+
+.column img {
+    width: 800px;
+    height: 600px;
+    object-fit: contain;
+}

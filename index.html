@@ -3,147 +3,225 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Genre Identifier</title>
-  <link rel="stylesheet" href="main.css">
+  
+  <!-- Tailwind import -->
+  <link href="./src/output.css" rel="stylesheet">
+
+  <!-- Font Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Gidugu&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <!-- <header class="navpages">
-    <div class="logo">
-      <a href="index.html"> Genre Identifier </a>
+<body class="bg-[#d6d3c4] min-h-screen font-[Alef]" style="zoom: 1.25" >
+  
+  <div class="bg-[#d6d3c4] text-center py-8 px-4">
+      <h1 class="text-3xl font-bold text-[#2d2d2d] mb-4">
+        Classify Genre of Music Using Random Forests
+      </h1>
+      <nav class="flex justify-center gap-12 text-[#6b7c6b] text-lg text-medium">
+        <a href="#motivation" class="hover:underline">
+          Motivation</a>
+        <a href="#overview" class="hover:underline">
+          Overview</a>
+        <a href="#methodology" class="hover:underline">
+          Methodology</a>
+        <a href="#results" class="hover:underline">
+          Results</a>
+      </nav>
+  </div>
+
+    <!-- MOTIVATION -->
+    <div id="motivation" class="bg-[#75866f] py-10 px-16">
+      <h2 class="text-2xl font-bold text-[#e8e4d8] mb-6">Motivation</h2>
+      <div class="border-l-4 border-[#cdcac0] pl-6 text-[#e8e4d8] leading-relaxed">
+        <p>
+          Our goal was to create a model which could classify the genre of an audio clip using a random forest model.
+          In addition to building the model, we also wanted to explore the GTZAN dataset, including which features were most
+          important and which genres are most commonly classified as others.
+          Lastly, we also wanted to explore what the impact of removing repeated values in the GTZAN dataset had on model
+          accuracy.
+          Music classification, especially that done by computers, is a common problem in the music technology field and one
+          that we were particarly interested in exploring.
+          Also, the GTZAN dataset is incredibly popular, and we are interested in exploring some of the limitations and common issues found within it.
+        </p>
+      </div>
     </div>
-  </header> -->
 
-  <h1>Classify Genre of Music Using Random Forests</h1>
-  <div class="members">
-    <p>Katerina Falkner and Ishani Pidara</p>
+    <!-- OVERVIEW -->
+    <div id="overview" class="bg-[#d6d3c4] py-10 px-16">
+      <h2 class="text-2xl font-bold text-[#2d2d2d] mb-6">Project Overview</h2>
+      <div class="border-l-4 border-[#9a9a8a] pl-6 text-[#2d2d2d] leading-relaxed">
+        <p>
+          In order to accomplish our goal, we implemented a random forest model which we trained and tested on the GTZAN dataset.
+          Then, from the results of this model, we are able to analyze the dataset using several metrics, including overall
+          accuracy values, a confusion matrix, and feature importance.
+          These metrics allow us to examine how well the model predicts each genre and which features are most beneficial when splitting in the forest.
+          We tested each of these using the original GTZAN dataset and a modified version of the set that sought to mitigate the issues found within it to compare the difference.
+        </p>
+      </div>
+    </div>
+
+    <!-- METHODOLOGY -->
+    <div id="methodology" class="bg-[#75866f] py-10 px-16">
+      <h2 class="text-2xl font-bold text-[#e8e4d8] mb-6">Methodology</h2>
+
+      <div class="border-l-4 border-[#cdcac0] pl-6 text-[#e8e4d8] leading-relaxed">
+        <p class="font-bold text-[#f0e6cc]"> Random Forest Implementation</p>
+        <p>
+          We implemented a random forest model using the sklearn library in Python, specifically the RandomForestClassifier function. The classifier builds a collection of decision trees and trains each one on a random subset of the data rows and features. The final prediction of the random forest is made by aggregating the predictions of all the individual trees through a majority vote.
+        </p>
+      </div>
+
+      <br> <br>
+
+      <div class="border-l-4 border-[#cdcac0] pl-6 text-[#e8e4d8] leading-relaxed">
+        <p class="font-bold text-[#f0e6cc]"> GTZAN Dataset</p>
+        <p>
+          We used the GTZAN dataset for our model, which contains 1000 audio clips of 10 different genres. Each audio clip is 30 seconds long and has been preprocessed to extract 59 features, including chroma features, spectral centroids, harmony features, and MFCCs. However, the GTZAN dataset has several known issues, including repeated audio files. To address this, we also created a modified version of the dataset that removed repeated audio files specified in previous research.
+        </p>
+        <p>The following table shows the distribution of genres that were removed:</p>
+
+        <table class=" mt-3 w-full border-collapse text-sm text-center">
+          <tr>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Jazz</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Reggae</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Metal</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Pop</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Disco</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Hip-hop</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Rock</th>
+          </tr>
+          <tr>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">13</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">11</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">9</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">9</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">6</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">2</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">1</td>
+          </tr>
+        </table>
+      </div>
+
+      <br> <br>
+      
+      <div class="border-l-4 border-[#cdcac0] pl-6 text-[#e8e4d8] leading-relaxed">
+        <p class="font-bold text-[#f0e6cc]"> Training and Testing</p>
+          <p>
+            We trained our model on 80% of the dataset and tested it on the remaining 20%, ensuring that the two sets were mutually exclusive using the split and train function from sklearn. Using this trained model, we made genre predictions on the test set using the predict function from sklearn.
+          </p>
+      </div>
+
+    <br> <br>
+
+    <div class="border-l-4 border-[#cdcac0] pl-6 text-[#e8e4d8] leading-relaxed">
+      <p class="font-bold text-[#f0e6cc]"> Success Metrics</p>
+        <p>
+            We then analyzed the results using several metrics, including overall accuracy values, a confusion matrix, and feature importance.
+        </p>
+
+      <ul class="pl-6 text-[#e8e4d8] leading-relaxed space-y-4">
+        <li class="list-disc ml-4">
+          <p class="text-[#f0e6cc] font-bold">Accuracy:</p>
+          To determine the success rate of our model, we compared the predicted labels to the actual labels using the accuracy_score function from sklearn. The accuracy_score function simply calculates the proportion of correct predictions to the total predictions made by the model, giving us a clear measure of how well our model is performing in classifying the genres of the audio clips.
+        </li>
+
+        <li class="list-disc ml-4">
+          <p class="text-[#f0e6cc] font-bold">Confusion Matrix:</p>
+          To further analyze the performance of our model, we created a confusion matrix using the confusion_matrix function from sklearn. A confusion matrix is a table that helps visualize where the model is making correct and incorrect predictions. The rows represent the actual genres, while the columns represent the predicted genres. Each cell in the matrix contains the count of predictions for that specific combination. Using the confusion matrix, we can identify which genres are being confused with others and gain information into the strengths and weaknesses of our model in classifying different genres.
+        </li>
+
+        <li class="list-disc ml-4">
+          <p class="text-[#f0e6cc] font-bold">Feature Importance:</p>
+          To determine which features were most important in our model, we used the feature_importances_ attribute on the trained random forest model. It calculates the importance of each feature based on how much it contributed to reducing impurity in decision trees. When a feature is used to split a node, the error reductions as a result of the split are multiplied by the number of samples directed to that node. These values are summed across all trees and normalized, which means that feature importances are relative to each other. The resulting score per feature indicate which ones had the greatest impact on the model's predictions.
+        </li>
+      </ul>    
+    </div>
   </div>
 
-  <!-- Contact Email -->
-  <div class="email">
-    KaterinaFalkner2026@u.northwestern.edu, IshaniPidara2026@u.northwestern.edu
-  </div>
+    <!-- RESULTS -->
+    <div id="results" class="bg-[#d6d3c4] py-10 px-16">
+      <h2 class="text-2xl font-bold text-[#2d2d2d] mb-6">Results</h2>
 
-  <!-- Course Information -->
-  <div class="course-info">
-    <p><strong>Course:</strong> COMP_SCI 352: Machine Perception of Music & Audio</p>
-    <p><strong>University:</strong> Northwestern University</p>
-    <p><strong>Professor:</strong> Professor Bryan Pardo</p>
-  </div>
+      <!-- eval 1 -->
+      <div class="border-l-4 border-[#9a9a8a] pl-6 text-[#2d2d2d] leading-relaxed">
+        <p class="font-bold text-[#726c56]"> Original Dataset Evaluation</p>
+        <p> Accuracy Score: 75%</p>
 
-  <p><strong>Github repository link:</strong> <a href="url">https://github.com/ipidara/genre_identifier</a> </p>
+          <!-- graphs -->
+          <div class="grid grid-cols-5 gap-6">
+            <div class="flex flex-col items-center gap-2 col-span-3">
+              <p class="text-[#726c56] font-bold">Feature Importance</p>
+              <img src="feature_importance.png" alt="Feature Importance Graph"
+                class="w-full border-2 border-[#5a6b54] rounded">
+            </div>
+            <div class="flex flex-col items-center gap-2 col-span-2">
+              <p class="text-[#726c56] font-bold">Confusion Matrix</p>
+              <img src="confusion_matrix.png" alt="Confusion Matrix"
+                class="w-full border-2 border-[#5a6b54] rounded">
+            </div>
+         </div>
 
-  <h2>Motivation</h2>
-  <p>Our goal was to create a model which could classify the genre of an audio clip using a random forest model.
-    In addition to building the model, we also wanted to explore the GTZAN dataset, including which features were most
-    important and which genres are most commonly classified as others.
-    Lastly, we also wanted to explore what the impact of removing repeated values in the GTZAN dataset had on model
-    accuracy.
-    Music classification, especially that done by computers, is a common problem in the music technology field and one
-    that we were particarly interested in exploring.
-    Also, the GTZAN dataset is incredibly popular, and we are interested in exploring some of the limitations and common issues found within it.
-  </p>
+         <br>
+      
+         <p> The random forest model trained on the original dataset had an accuracy of 75%. The confusion matrix shows that several genres, such as jazz and metal, are classified with relatively high accuracy, whereas genres like pop and rock show more frequent misclassifications. This shows that the model is better at distinguishing between certain genres than others, potentially due to similar acoustic features that may make it more difficult to differentiate between genres, or due to repeated audio files in the training set that may have made it easier for the model to learn and predict certain genres. The feature importance graph shows that perceptron variance, chroma stft mean, length, and ms mean were among some of the most important features.</p>
+      </div>
 
-  <h2>Project Overview</h2>
-  <p>In order to accomplish our goal, we implemented a random forest model which we trained and tested on the GTZAN
-    dataset.
-    Then, from the results of this model, we are able to analyze the dataset using several metrics, including overall
-    accuracy values, a confusion matrix, and feature importance.
-    These metrics allow us to examine how well the model predicts each genre and which features are most beneficial when splitting in the forest.
-    We tested each of these using the original GTZAN dataset and a modified version of the set that sought to mitigate the issues found within it to compare the difference.
-  </p>
+      <br> <br>
 
-  <h2>Methodology</h2>
-  <p>
-    <i>Random Forest Implementation:</i>
-    We implemented a random forest model using the sklearn library in Python, specifically the RandomForestClassifier function. The classifier builds a collection of decision trees and trains each one on a random subset of the data rows and features. The final prediction of the random forest is made by aggregating the predictions of all the individual trees through a majority vote.
+      <!-- eval 2 -->
+      <div class="border-l-4 border-[#9a9a8a] pl-6 text-[#2d2d2d] leading-relaxed">
+        <p class="font-bold text-[#726c56]"> Modified Dataset Evaluation</p>
+        <p> Accuracy Score: 78.42%</p>
+
+          <!-- graphs -->
+          <div class="grid grid-cols-5 gap-6">
+            <div class="flex flex-col items-center gap-2 col-span-3">
+              <p class="text-[#726c56] font-bold">Feature Importance</p>
+              <img src="feature_importance_removed.png" alt="Feature Importance Graph"
+                class="w-full border-2 border-[#5a6b54] rounded">
+            </div>
+            <div class="flex flex-col items-center gap-2 col-span-2">
+              <p class="text-[#726c56] font-bold">Confusion Matrix</p>
+              <img src="confusion_matrix_removed.png" alt="Confusion Matrix"
+                class="w-full border-2 border-[#5a6b54] rounded">
+            </div>
+         </div>
+
+         <br>
+      
+         <p> The random forest model trained on the modified dataset improved accuracy from 75% to 78.42%. The confusion matrix shows that the model improved significantly at classifying pop (after 9 files were removed), and slightly improved with classical, blues, and country (all of which were not duplicated genres). On the other hand, it shows that jazz decreased significantly, with 13 duplicates removed, and reggae decreased slightly, with 9 duplicates removed. This suggests that the model was incorrectly inflating the accuracy of jazz and reggae by overfitting to the duplicated audio files, and after removal, the model is able to better predict other genres. The feature importance graph shows that perceptron variance, chroma stft mean, length, and ms mean were still among some of the most important features.</p>
+      </div>
+    </div>
     
-    <br><br>
+  <!-- FOOTER: title, contact, course info, repo -->
+   <div class="bg-[#75866f] text-[#faf7ed] mt-8 p-4">
+      <div class="flex justify-center mt-2">
+        Katerina Falkner and Ishani Pidara
+      </div>
 
-    <i>GTZAN Dataset:</i>
-    We used the GTZAN dataset for our model, which contains 1000 audio clips of 10 different genres. Each audio clip is 30 seconds long and has been preprocessed to extract 59 features, including chroma features, spectral centroids, harmony features, and MFCCs. However, the GTZAN dataset has several known issues, including repeated audio files. To address this, we also created a modified version of the dataset that removed repeated audio files specified in previous research. The following table shows the distribution of genres that were removed:
+      <!-- Contact Emails -->
+      <div class="flex justify-center mt-0.5">
+        katerinafalkner2026@u.northwestern.edu, ishanipidara2026@u.northwestern.edu
+      </div>
 
-    <table border="2">
-      <tr>
-        <th>Jazz</th>
-        <th>Reggae</th>
-        <th>Metal</th>
-        <th>Pop</th>
-        <th>Disco</th>
-        <th>Hip-hop</th>
-        <th>Rock</th>
-      </tr>
-      <tr>
-        <td>13</td>
-        <td>11</td>
-        <td>9</td>
-        <td>9</td>
-        <td>6</td>
-        <td>2</td>
-        <td>1</td>
-      </tr>
-    </table>
+      <!-- Course Information -->
+      <div class="text-center space-y-1 course-info">
+        <p>Northwestern University</p>
+        <p>Professor Bryan Pardo</p>
+        <p>COMP_SCI 352: Machine Perception of Music & Audio</p>
+      </div>
 
-    <br><br>
-
-    <i>Training and Testing:</i>
-    We trained our model on 80% of the dataset and tested it on the remaining 20%, ensuring that the two sets were mutually exclusive using the split and train function from sklearn. Using this trained model, we made genre predictions on the test set using the predict function from sklearn. 
-
-    <br><br>
-
-    <i>Success Metrics:</i>
-    We then analyzed the results using several metrics, including overall accuracy values, a confusion matrix, and feature importance.
-    <ul>
-      <li>
-        Accuracy- to determine the success rate of our model, we compared the predicted labels to the actual labels using the accuracy_score function from sklearn. The accuracy_score function simply calculates the proportion of correct predictions to the total predictions made by the model, giving us a clear measure of how well our model is performing in classifying the genres of the audio clips.
-      </li>
-
-      <li>
-        Confusion Matrix- to further analyze the performance of our model, we created a confusion matrix using the confusion_matrix function from sklearn. A confusion matrix is a table that helps visualize where the model is making correct and incorrect predictions. The rows represent the actual genres, while the columns represent the predicted genres. Each cell in the matrix contains the count of predictions for that specific combination. Using the confusion matrix, we can identify which genres are being confused with others and gain information into the strengths and weaknesses of our model in classifying different genres.
-      </li>
-
-      <li>
-        Feature Importance- to determine which features were most important in our model, we used the feature_importances_ attribute on the trained random forest model. It calculates the importance of each feature based on how much it contributed to reducing impurity in decision trees. When a feature is used to split a node, the error reductions as a result of the split are multiplied by the number of samples directed to that node. These values are summed across all trees and normalized, which means that feature importances are relative to each other. The resulting score per feature indicate which ones had the greatest impact on the model's predictions.
-      </li>
-    </ul>
-    
-    We compared the results of our model when trained on the full dataset versus a dataset with repeated audio files removed to see the impact of these duplicates on model performance.
-  </p>
-
-  <h2>Results</h2>
-  <h3>Original Dataset Model Evaluation</h3>
-  <p>Accuracy Score: 75%</p>
-
-  <div class="graphs">
-    <div class="column">
-      <p> Feature Importance</p>
-      <img src="feature_importance.png" alt="Feature Importance Graph">
-    </div>
-    
-    <div class="column">
-      <p> Confusion Matrix</p>
-      <img src="confusion_matrix.png" alt="Confusion Matrix">
-    </div>
-  </div>
-
-  <p> The random forest model trained on the original dataset had an accuracy of 75%. The confusion matrix shows that several genres, such as jazz and metal, are classified with relatively high accuracy, whereas genres like pop and rock show more frequent misclassifications. This shows that the model is better at distinguishing between certain genres than others, potentially due to similar acoustic features that may make it more difficult to differentiate between genres, or due to repeated audio files in the training set that may have made it easier for the model to learn and predict certain genres. The feature importance graph shows that perceptron variance, chroma stft mean, length, and ms mean were among some of the most important features.</p>
-
-  <h3>Modified Dataset Model Evaluation</h3>
-  <p>Accuracy Score: 78.42%</p>
-
-  <div class="graphs">
-    <div class="column">
-      <p> Feature Importance</p>
-      <img src="feature_importance_removed.png" alt="Feature Importance Graph">
-    </div>
-    
-    <div class="column">
-      <p> Confusion Matrix</p>
-      <img src="confusion_matrix_removed.png" alt="Confusion Matrix">
-    </div>
-  </div>
-
-  <p> The random forest model trained on the modified dataset improved accuracy from 75% to 78.42%. The confusion matrix shows that the model improved significantly at classifying pop (after 9 files were removed), and slightly improved with classical, blues, and country (all of which were not duplicated genres). On the other hand, it shows that jazz decreased significantly, with 13 duplicates removed, and reggae decreased slightly, with 9 duplicates removed. This suggests that the model was incorrectly inflating the accuracy of jazz and reggae by overfitting to the duplicated audio files, and after removal, the model is able to better predict other genres. The feature importance graph shows that perceptron variance, chroma stft mean, length, and ms mean were still among some of the most important features.</p>
+      <!-- Repo link -->
+      <div class="flex justify-center text-[#4ec741]">
+        <a  class="hover:underline" href="https://github.com/ipidara/genre_identifier"> Github Repository</a> 
+      </div>
 </body>
 
 </html>
