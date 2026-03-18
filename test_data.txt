@@ -1,0 +1,19 @@
+'blues.00010.wav', 'blues.00023.wav', 'blues.00025.wav', 'blues.00030.wav', 'blues.00039.wav', 'blues.00044.wav', 'blues.00054.wav', 'blues.00055.wav', 'blues.00059.wav', 'blues.00060.wav', 'blues.00063.wav', 'blues.00066.wav', 'blues.00067.wav', 'blues.00070.wav', 'blues.00072.wav', 'blues.00076.wav', 'blues.00078.wav', 'blues.00086.wav', 'blues.00088.wav', 'blues.00096.wav', 
+
+'classical.00001.wav', 'classical.00007.wav', 'classical.00010.wav', 'classical.00020.wav', 'classical.00036.wav', 'classical.00037.wav', 'classical.00039.wav', 'classical.00058.wav', 'classical.00068.wav', 'classical.00074.wav', 'classical.00084.wav', 'classical.00098.wav', 'classical.00099.wav', 
+
+'country.00008.wav', 'country.00009.wav', 'country.00010.wav', 'country.00013.wav', 'country.00015.wav', 'country.00018.wav', 'country.00021.wav', 'country.00035.wav', 'country.00037.wav', 'country.00044.wav', 'country.00047.wav', 'country.00054.wav', 'country.00056.wav', 'country.00059.wav', 'country.00060.wav', 'country.00061.wav', 'country.00065.wav', 'country.00075.wav', 'country.00077.wav', 'country.00080.wav', 'country.00081.wav', 'country.00089.wav', 'country.00092.wav', 'country.00094.wav', 'country.00096.wav', 'country.00098.wav', 'country.00099.wav', 
+
+'disco.00007.wav', 'disco.00009.wav', 'disco.00010.wav', 'disco.00012.wav', 'disco.00014.wav', 'disco.00018.wav', 'disco.00019.wav', 'disco.00021.wav', 'disco.00027.wav', 'disco.00028.wav', 'disco.00032.wav', 'disco.00046.wav', 'disco.00051.wav', 'disco.00055.wav', 'disco.00061.wav', 'disco.00063.wav', 'disco.00065.wav', 'disco.00070.wav', 'disco.00071.wav', 'disco.00077.wav', 'disco.00082.wav', 
+
+'hiphop.00008.wav', 'hiphop.00011.wav', 'hiphop.00025.wav', 'hiphop.00029.wav', 'hiphop.00032.wav', 'hiphop.00036.wav', 'hiphop.00039.wav', 'hiphop.00045.wav', 'hiphop.00051.wav', 'hiphop.00062.wav', 'hiphop.00079.wav', 'hiphop.00086.wav', 'hiphop.00093.wav', 'hiphop.00094.wav', 'hiphop.00099.wav', 
+
+'jazz.00013.wav', 'jazz.00021.wav', 'jazz.00022.wav', 'jazz.00026.wav', 'jazz.00027.wav', 'jazz.00028.wav', 'jazz.00029.wav', 'jazz.00034.wav', 'jazz.00042.wav', 'jazz.00043.wav', 'jazz.00048.wav', 'jazz.00049.wav', 'jazz.00054.wav', 'jazz.00059.wav', 'jazz.00070.wav', 'jazz.00078.wav', 'jazz.00083.wav', 'jazz.00084.wav', 'jazz.00089.wav', 'jazz.00090.wav', 'jazz.00095.wav', 'jazz.00099.wav', 
+
+'metal.00001.wav', 'metal.00004.wav', 'metal.00013.wav', 'metal.00017.wav', 'metal.00021.wav', 'metal.00026.wav', 'metal.00035.wav', 'metal.00036.wav', 'metal.00043.wav', 'metal.00044.wav', 'metal.00049.wav', 'metal.00050.wav', 'metal.00052.wav', 'metal.00056.wav', 'metal.00060.wav', 'metal.00062.wav', 'metal.00068.wav', 'metal.00070.wav', 'metal.00077.wav', 'metal.00078.wav', 'metal.00079.wav', 'metal.00087.wav', 'metal.00089.wav', 'metal.00092.wav', 'metal.00097.wav', 
+
+'pop.00013.wav', 'pop.00014.wav', 'pop.00016.wav', 'pop.00021.wav', 'pop.00037.wav', 'pop.00040.wav', 'pop.00041.wav', 'pop.00049.wav', 'pop.00053.wav', 'pop.00061.wav', 'pop.00064.wav', 'pop.00067.wav', 'pop.00087.wav', 
+
+'reggae.00000.wav', 'reggae.00002.wav', 'reggae.00010.wav', 'reggae.00011.wav', 'reggae.00016.wav', 'reggae.00020.wav', 'reggae.00022.wav', 'reggae.00023.wav', 'reggae.00026.wav', 'reggae.00029.wav', 'reggae.00037.wav', 'reggae.00045.wav', 'reggae.00049.wav', 'reggae.00059.wav', 'reggae.00065.wav', 'reggae.00066.wav', 'reggae.00067.wav', 'reggae.00079.wav', 'reggae.00083.wav', 'reggae.00084.wav', 'reggae.00092.wav', 'reggae.00093.wav', 'reggae.00099.wav', 
+
+'rock.00001.wav', 'rock.00002.wav', 'rock.00014.wav', 'rock.00017.wav', 'rock.00024.wav', 'rock.00036.wav', 'rock.00038.wav', 'rock.00041.wav', 'rock.00042.wav', 'rock.00047.wav', 'rock.00048.wav', 'rock.00059.wav', 'rock.00073.wav', 'rock.00074.wav', 'rock.00077.wav', 'rock.00078.wav', 'rock.00085.wav', 'rock.00086.wav', 'rock.00089.wav', 'rock.00095.wav', 'rock.00098.wav'
