@@ -7,9 +7,9 @@ from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDis
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
 from transformers import pipeline
-import os
-os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
+# create a class with the online classifer
+# from: https://huggingface.co/SeyedAli/Musical-genres-Classification-Hubert-V1
 class GenreClassifier:
     def __init__(self):
         self.model = pipeline(
@@ -18,6 +18,7 @@ class GenreClassifier:
             device="cpu"
         )
 
+    # predict function to run classifer
     def predict(self, path):
         return self.model(path)[0]["label"]
 
@@ -61,6 +62,9 @@ def random_forest(df, sample_type):
     low_accuracy = accuracy_score(y_test, low_baseline)
     print(f"{sample_type} Low Baseline Accuracy:", low_accuracy)
 
+    # self reported accuracy from: https://huggingface.co/SeyedAli/Musical-genres-Classification-Hubert-V1 
+    print("High Baseline Accuracy:", 0.84)
+
     # create confusion matrix and display
     confusion = confusion_matrix(y_test, prediction)
     disp = ConfusionMatrixDisplay(confusion_matrix=confusion, display_labels=randomforest.classes_)
@@ -89,19 +93,24 @@ def random_forest(df, sample_type):
     return randomforest, scaler, most_common_genre
 
 def classify_one(input, forest, scaler):
+    # new datafrom to get input from
     df = pd.read_csv("./GTZAN/features_30_sec.csv")
     
+    # get row and label of input
     row = df[df["filename"] == input]
     actual_label = row["label"].values[0]
 
+    # remove filename and label columns
     row = row.drop(columns=["filename", "label"]).values
 
+    # scale row the same as tree
     row = scaler.transform(row)
 
+    # predict using random forest
     prediction = forest.predict(row)
 
+    # predict using high baseline classifier
     genre = input.split(".")[0]
-
     clf = GenreClassifier()
     high_pred = clf.predict(f"./GTZAN/genres_original/{genre}/{input}")
 
@@ -141,10 +150,8 @@ df_removals = df_removals.drop(columns=["filename"])
 full_forest, scaler, low_base = random_forest(df, "Full Dataset")
 removed_forest, removed_scaler, removed_low_base = random_forest(df_removals, "Dataset with removals")
 
-# WHICH ONE TO USE ON INPUTS??
 prediction, actual_label, high_pred = classify_one(input, full_forest, scaler)
 
-# WHAT ORDER TO DO THESE??
 print()
 print()
 print("Predictions for ", input)
