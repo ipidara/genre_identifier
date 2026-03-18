@@ -73,6 +73,20 @@ def random_forest(df, sample_type):
 
     return randomforest, scaler, most_common_genre
 
+def classify_one(input, forest, scaler):
+    df = pd.read_csv("./GTZAN/features_30_sec.csv")
+    
+    row = df[df["filename"] == input]
+    actual_label = row["label"].values[0]
+
+    row = row.drop(columns=["filename", "label"]).values
+
+    row = scaler.transform(row)
+
+    prediction = forest.predict(row)
+
+    return prediction, actual_label
+
 # read data into dataframe 
 df = pd.read_csv("./GTZAN/features_30_sec.csv")
 # data frame consists of the name of the file and all 59 features, including the label (genre)
@@ -94,13 +108,10 @@ df_removals = df_removals[~df_removals["filename"].isin(removal_files)]
 
 # CHANGE THIS WHEN ADD INPUT ABILITY
 input = "blues.00000.wav"
-row = df[df["filename"] == input]
-actual_label = row["label"].values[0]
 
 # remove the name of the file from the dataframes
 df = df.drop(columns=["filename"])
 df_removals = df_removals.drop(columns=["filename"])
-row = row.drop(columns=["filename", "label"]).values
 
 # col_names = df.columns[range(21, 57)]
 # df = df.drop(columns=col_names) 
@@ -111,15 +122,13 @@ full_forest, scaler, low_base = random_forest(df, "Full Dataset")
 removed_forest, removed_scaler, removed_low_base = random_forest(df_removals, "Dataset with removals")
 
 # WHICH ONE TO USE ON INPUTS??
-row = scaler.transform(row)
-
-prediction = full_forest.predict(row)
+prediction, actual_label = classify_one(input, full_forest, scaler)
 
 # WHAT ORDER TO DO THESE??
 print()
 print()
 print("Predictions for ", input)
 print()
+print("Model Prediction:", prediction[0])
 print("Actual Genre:", actual_label)
 print("Low Baseline Prediction:", low_base)
-print("Model Prediction:", prediction[0])
