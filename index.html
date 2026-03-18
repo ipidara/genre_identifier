@@ -83,7 +83,7 @@
       <div class="border-l-4 border-[#cdcac0] pl-6 text-[#e8e4d8] leading-relaxed">
         <p class="font-bold text-[#f0e6cc]"> GTZAN Dataset</p>
         <p>
-          We used the GTZAN dataset for our model, which contains 1000 audio clips of 10 different genres. Each audio clip is 30 seconds long and has been preprocessed to extract 59 features, including chroma features, spectral centroids, harmony features, and MFCCs. However, the GTZAN dataset has several known issues, including repeated audio files. To address this, we also created a modified version of the dataset that removed repeated audio files specified in previous research.
+          We used the GTZAN dataset for our model, which contains 1000 audio clips of 10 different genres. Each audio clip is 30 seconds long and has been preprocessed to extract 59 features, including chroma features, spectral centroids, harmony features, and MFCCs. However, the GTZAN dataset has several known issues, including repeated audio files. To address this, we also created a modified version of the dataset that removed the 51 repeated audio files specified in previous research.
         </p>
         <p>The following table shows the distribution of genres that were removed:</p>
 
@@ -116,6 +116,49 @@
           <p>
             We trained our model on 80% of the dataset and tested it on the remaining 20%, ensuring that the two sets were mutually exclusive using the split and train function from sklearn. Using this trained model, we made genre predictions on the test set using the predict function from sklearn.
           </p>
+          <p>The following tables show the distribution of samples per genre in the train and test sets:</p>
+
+        <table class=" mt-3 w-full border-collapse text-sm text-center">
+          <tr>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Set</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Blues</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Classical</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Country</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Jazz</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Reggae</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Metal</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Pop</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Disco</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Hip-hop</th>
+            <th class="bg-[#93a48d] text-[#e8e4d8] px-5 py-2.5 border border-[#5a6b54] font-medium">Rock</th>
+          </tr>
+          <tr>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">Train</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">80</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">87</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">73</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">65</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">66</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">84</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">78</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">73</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">83</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">78</td>
+          </tr>
+          <tr>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">Test</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">20</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">13</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">27</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">22</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">23</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">25</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">13</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">21</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">15</td>
+            <td class="bg-[#d6d3c4] text-[#3d3d3d] px-5 py-2.5 border border-[#b0ad9e]">21</td>
+          </tr>
+        </table>
       </div>
 
     <br> <br>
