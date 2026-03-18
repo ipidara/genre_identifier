@@ -5,8 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.ensemble import RandomForestClassifier
+from collections import Counter
 
-def random_forest(df):
+def random_forest(df, sample_type):
     feature_names = df.columns.tolist()
     feature_names = feature_names[:-1] # remove the last column (label) from feature names
     # print(feature_names)
@@ -17,6 +18,11 @@ def random_forest(df):
 
     # split the data into test group and train group 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # get the most common genre for the low baseline
+    counter = Counter(y_train)
+    most_common_genre = counter.most_common(1)[0][0]
+    low_baseline = [most_common_genre] * len(y_test)
 
     # feature scale the data so they are on same scale
     scaler = StandardScaler()
@@ -34,14 +40,18 @@ def random_forest(df):
 
     # calculate the accuracy of the forest, and print
     accuracy = accuracy_score(y_test, prediction)
-    print("Accuracy:", accuracy)
+    print(f"{sample_type} Accuracy:", accuracy)
+
+    # calculate low baseline accuracy
+    low_accuracy = accuracy_score(y_test, low_baseline)
+    print(f"{sample_type} Low Baseline Accuracy:", low_accuracy)
 
     # create confusion matrix and display
     confusion = confusion_matrix(y_test, prediction)
     disp = ConfusionMatrixDisplay(confusion_matrix=confusion, display_labels=randomforest.classes_)
     disp.plot()
     plt.xticks(rotation=90)
-    plt.show()
+    # plt.show()
 
     # create feature importances graph, and 
     feature_importances = randomforest.feature_importances_
@@ -59,7 +69,9 @@ def random_forest(df):
     plt.xticks(fontsize=11)
     plt.yticks(fontsize=11)
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+
+    return randomforest, scaler, most_common_genre
 
 # read data into dataframe 
 df = pd.read_csv("./GTZAN/features_30_sec.csv")
@@ -80,14 +92,34 @@ removal_files = ["disco.00051.wav", "disco.00070.wav", "disco.00060.wav", "disco
 # remove all the repeated audio files
 df_removals = df_removals[~df_removals["filename"].isin(removal_files)]
 
+# CHANGE THIS WHEN ADD INPUT ABILITY
+input = "blues.00000.wav"
+row = df[df["filename"] == input]
+actual_label = row["label"].values[0]
+
 # remove the name of the file from the dataframes
 df = df.drop(columns=["filename"])
 df_removals = df_removals.drop(columns=["filename"])
+row = row.drop(columns=["filename", "label"]).values
 
 # col_names = df.columns[range(21, 57)]
 # df = df.drop(columns=col_names) 
 # print(df)
 
 # run the random forest model and get outputs on each dataframe
-random_forest(df)
-random_forest(df_removals)
+full_forest, scaler, low_base = random_forest(df, "Full Dataset")
+removed_forest, removed_scaler, removed_low_base = random_forest(df_removals, "Dataset with removals")
+
+# WHICH ONE TO USE ON INPUTS??
+row = scaler.transform(row)
+
+prediction = full_forest.predict(row)
+
+# WHAT ORDER TO DO THESE??
+print()
+print()
+print("Predictions for ", input)
+print()
+print("Actual Genre:", actual_label)
+print("Low Baseline Prediction:", low_base)
+print("Model Prediction:", prediction[0])
