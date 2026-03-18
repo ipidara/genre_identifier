@@ -10,17 +10,17 @@ from transformers import pipeline
 
 # create a class with the online classifer
 # from: https://huggingface.co/SeyedAli/Musical-genres-Classification-Hubert-V1
-class GenreClassifier:
-    def __init__(self):
-        self.model = pipeline(
-            "audio-classification",
-            model="SeyedAli/Musical-genres-Classification-Hubert-V1",
-            device="cpu"
-        )
+# class GenreClassifier:
+#     def __init__(self):
+#         self.model = pipeline(
+#             "audio-classification",
+#             model="SeyedAli/Musical-genres-Classification-Hubert-V1",
+#             device="cpu"
+#         )
 
-    # predict function to run classifer
-    def predict(self, path):
-        return self.model(path)[0]["label"]
+#     # predict function to run classifer
+#     def predict(self, path):
+#         return self.model(path)[0]["label"]
 
 
 def random_forest(df, sample_type):
@@ -110,11 +110,11 @@ def classify_one(input, forest, scaler):
     prediction = forest.predict(row)
 
     # predict using high baseline classifier
-    genre = input.split(".")[0]
-    clf = GenreClassifier()
-    high_pred = clf.predict(f"./GTZAN/genres_original/{genre}/{input}")
+    # genre = input.split(".")[0]
+    # clf = GenreClassifier()
+    # high_pred = clf.predict(f"./GTZAN/genres_original/{genre}/{input}")
 
-    return prediction, actual_label, high_pred
+    return prediction, actual_label
 
 # read data into dataframe 
 df = pd.read_csv("./GTZAN/features_30_sec.csv")
@@ -150,7 +150,7 @@ df_removals = df_removals.drop(columns=["filename"])
 full_forest, scaler, low_base = random_forest(df, "Full Dataset")
 removed_forest, removed_scaler, removed_low_base = random_forest(df_removals, "Dataset with removals")
 
-prediction, actual_label, high_pred = classify_one(input, full_forest, scaler)
+prediction, actual_label = classify_one(input, full_forest, scaler)
 
 print()
 print()
@@ -159,6 +159,6 @@ print()
 print("Model Prediction:", prediction[0])
 print("Actual Genre:", actual_label)
 print("Low Baseline Prediction:", low_base)
-print("High Baseline Prediction:", high_pred)
+# print("High Baseline Prediction:", high_pred)
 
 # print("CLASSIFIED", classify_one("reggae.00000.wav", removed_forest, scaler))
