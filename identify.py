@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.ensemble import RandomForestClassifier
 from collections import Counter
-from transformers import pipeline
+# from transformers import pipeline
 
 # create a class with the online classifer
 # from: https://huggingface.co/SeyedAli/Musical-genres-Classification-Hubert-V1
