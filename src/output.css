@@ -255,6 +255,9 @@
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
   }
+  .mb-8 {
+    margin-bottom: calc(var(--spacing) * 8);
+  }
   .ml-3 {
     margin-left: calc(var(--spacing) * 3);
   }
@@ -580,6 +583,9 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
+  .text-\[\#0a180a\] {
+    color: #0a180a;
+  }
   .text-\[\#0f6d04\] {
     color: #0f6d04;
   }
@@ -621,6 +627,9 @@
   }
   .text-\[\#726c56\] {
     color: #726c56;
+  }
+  .text-\[\#274723\] {
+    color: #274723;
   }
   .text-\[\#554949\] {
     color: #554949;
@@ -697,6 +706,41 @@
     &:hover {
       @media (hover: hover) {
         background-color: #c8c5b6;
+      }
+    }
+  }
+  .hover\:text-\[\#75866f\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #75866f;
+      }
+    }
+  }
+  .hover\:text-\[\#377340\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #377340;
+      }
+    }
+  }
+  .hover\:text-\[\#\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #;
+      }
+    }
+  }
+  .hover\:text-\[\#fffff\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #fffff;
+      }
+    }
+  }
+  .hover\:text-\[\#ffffff\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #ffffff;
       }
     }
   }
