@@ -36,13 +36,13 @@ Because GTZAN contains known duplicate recordings, we evaluated two versions:
 ## Methodology
 
 - Implemented using `sklearn.RandomForestClassifier`
-- Data split: **80% training / 20% testing**
+- Data split: **80% training, 20% testing**
 - Predictions generated using majority voting across decision trees
 
 ### Evaluation Metrics
 - Accuracy score
 - Confusion matrix
-- Feature importance analysis
+- Feature importance
 
 ---
 
@@ -53,18 +53,9 @@ Because GTZAN contains known duplicate recordings, we evaluated two versions:
 | Original GTZAN | 75% |
 | Modified GTZAN | 78.42% |
 
-### Key Findings
+### Conclusions
 - Removing duplicates improved overall accuracy.
 - Classical music was easiest to classify.
 - Rock and pop were frequently misclassified.
 - Harmonic and spectral features were most important for prediction.
 
----
-
-## How to Run
-
-```bash
-git clone <repo-url>
-cd genre_identifier
-pip install -r requirements.txt
-python identify.py
